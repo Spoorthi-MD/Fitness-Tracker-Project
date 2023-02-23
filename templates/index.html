@@ -1,0 +1,79 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  <div class="container pt-4">
+    <div class="row  p-0 mt-4">
+      <div class="col-lg-4 mx-auto shadow p-0">
+        <div class="alert alert-info">
+          <h2>Add New Exercise Here</h2>
+        </div>
+        <div class="p-4">
+          <form action="/add-exercise/" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <hr>
+            <input type="submit" value="ADD" class="btn btn-info">
+          </form>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="border">
+          {% if exer|length == 0 %}
+          <div class="p-4">
+            <br>
+            <br>
+            <div class="alert alert-info text-center">
+              <p class="" style="font-size: 30px;">No Exercise</p>
+            </div>
+            <br>
+            <br>
+          </div>
+
+          {%else%}
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Exercise Name</th>
+                  <th>Reps</th>
+                  <th>Sets</th>Description
+                  <th>Description</th>
+                  <th>Delete Task</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                {% for exr in exer %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{exr.Exercise}}</td>
+                  <td>{{exr.Reps}}</td>
+                  <td>{{exr.Sets}}</td>
+                  <td>{{exr.Description}}</td>
+                  <td>
+                    <a href="/delete-exercise/{{exr.id}}" title="Delete" class="">🗑️</a>
+<!--                    {% if todo.status == 'P'%}-->
+<!--                    <a href="/change-status/{{todo.id}}/C" title="Mark Completed" class="">✅</a>-->
+<!--                    {%else%}-->
+<!--                    <a href="/change-status/{{todo.id}}/P" title="Mark Pending" class="">🕒</a>-->
+<!--                    {%endif%}-->
+                  </td>
+                </tr>
+                {%endfor%}
+
+
+              </tbody>
+            </table>
+          </div>
+          {%endif%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+  {% block content %}
+
+<div class="container pt-4">
+    <div class="col-lg-4 mx-auto shadow p-0 mt-4">
+      <div class="alert alert-info">
+        <h2>Admin Login Only</h2>
+      </div>
+      <div class="p-4">
+    <form class="login" method="post">
+      {% csrf_token %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {% for message in messages %}
+      {{message}}
+      {% endfor %}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<!--  <input type="email" name="email" value="" placeholder="Email ID"><br>-->
+      <input type="username" name="username" value="" placeholder="Admin Name">
+        <br><br>
+      <input type="password" name="password" value="" placeholder="Password">
+        <br><br>
+        <hr>
+      <input type="submit" value="Login" class="btn btn-info">
+    </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
