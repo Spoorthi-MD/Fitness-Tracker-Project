@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Exercise_add(models.Model):
-    Exercise = models.CharField(max_length=500)
+    Exercise = models.ForeignKey("Exercise_list",on_delete=models.CASCADE)
     Reps = models.IntegerField()
     Sets = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
